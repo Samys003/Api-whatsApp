@@ -114,7 +114,31 @@ const getUserMessage = function (number) {
   return message
 }
 
+const filterKeyword = function (number, contact, keyword) {
 
+  let message = { status: true, status_code: 200, development: 'Samara Santos' }
+
+    dados.contatos['whats-users'].forEach(item => {
+    if (item.number === number) {
+      item.contacts.find(user => {
+        if (user.number === contact) {
+          user.messages.find((word) => {
+            const result = word.content.toLowerCase().includes(keyword.toLowerCase())
+
+            return result
+          })
+        }
+      })
+    }
+
+  })
+
+  return message
+
+}
+
+
+console.log(filterKeyword('11987876567', '26999999963', 'Great'))
 
 module.exports = {
   getAllUsuarios,
